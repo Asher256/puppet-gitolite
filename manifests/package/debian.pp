@@ -6,20 +6,20 @@ class gitolite::package::debian(
   $preseed = '/var/cache/debconf/gitolite.preseed'
 ) {
 
-  user { $user: 
-    ensure => present, 
-    system => true, 
+  user { $user:
+    ensure => present,
+    system => true,
     gid => $group,
     home => $path,
   }
 
   group { $group: ensure => present, system => true, }
 
-  file { $path: 
+  file { $path:
     ensure => directory,
     owner => $user,
-    group => $user,
-    mode => '0755',
+    group => $group,
+    mode => '0750',
   }
 
   file { $preseed:
